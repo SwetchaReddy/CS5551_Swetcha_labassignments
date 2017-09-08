@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<script src="autocomplete.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Place Autocomplete</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+         * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #description {
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+        }
+
+        #infowindow-content .title {
+            font-weight: bold;
+        }
+
+        #infowindow-content {
+            display: none;
+        }
+
+        #map #infowindow-content {
+            display: inline;
+        }
+
+        .pac-card {
+            margin: 10px 10px 0 0;
+            border-radius: 2px 0 0 2px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            outline: none;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            background-color: #fff;
+            font-family: Roboto;
+        }
+
+        #pac-container {
+            padding-bottom: 12px;
+            margin-right: 12px;
+        }
+
+        .pac-controls {
+            display: inline-block;
+            padding: 5px 11px;
+        }
+
+        .pac-controls label {
+            font-family: Roboto;
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        #pac-input {
+            background-color: #fff;
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            margin-left: 12px;
+            padding: 0 11px 0 13px;
+            text-overflow: ellipsis;
+            width: 400px;
+        }
+
+        #pac-input:focus {
+            border-color: #4d90fe;
+        }
+
+        #title {
+            color: #fff;
+            background-color: #4d90fe;
+            font-size: 25px;
+            font-weight: 500;
+            padding: 6px 12px;
+        }
+    </style>
+</head>
+<body>
+
+
+<div class="wrapp" ng-controller="googlemapoutput">
+    <div class="row">
+
+        <button onclick="window.location.href='traffic.html'">Enter location</button>
+      <script>
+        var map;
+        var latarray =[]
+        var lngarray =[]
+        function initMap() {
+
+
+        var result = $http.get("https://www.mapquestapi.com/traffic/v2/incidents?&outFormat=json&boundingBox=39.79956841663087%2C-104.82158660888672%2C39.67706985250899%2C-105.14808654785156&key=1xdjGnzeNjVEaR57bNIaOHvnUOIbhiSP"
+        )
+        );
+        result.success(function(data)
+        {
+
+        var j=0
+        var k=0
+        $scope.name1 ="Data Not Found";
+        var length= data.result.length
+        for(var i=0;i<length;i++) {
+        latarray[j++] = data.result[i].lat
+        lngarray[k++] = data.result[j++].lng
+
+        var trafficlayer = new google.maps.map
+        var latLng = new google.maps.LatLng(latarray[i], lngarray[i]);
+        var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+        }
+        )
+        }
+        result.error(function (data) {
+        alert("There was some error processing your request. Please try after some time");
+
+        })
+
+        map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 2,
+        var trafficlayer = new google.maps.map
+        var latLng = new google.maps.LatLng(latarray[i],lngarray[i]);
+        var marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+        mapTypeId: 'terrain'
+        });
+
+
+        }
+
+        // Loop through the results array and place a marker for each
+        // set of coordinates.
+
+        });
+        }</script>
+
+
+        <br/></br>
+    </div>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpL2b78RNUjVvsDbjZUteI0WianeRxqYY&libraries=places&callback=initMap"
+            async defer></script>
+    <script src="https://www.mapquestapi.com/traffic/v2/incidents?&outFormat=json&boundingBox=39.79956841663087%2C-104.82158660888672%2C39.67706985250899%2C-105.14808654785156&key=1xdjGnzeNjVEaR57bNIaOHvnUOIbhiSP"></script>
+</body>
+</html>
