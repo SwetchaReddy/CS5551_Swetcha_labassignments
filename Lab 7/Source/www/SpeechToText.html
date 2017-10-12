@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="" >
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js" type="application/javascript"></script>
+
+<style>
+body{
+    background: url("https://preview.ibb.co/bv0S0b/bg3.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.form-control{
+    border-radius:8px;
+}
+.navbar{
+
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+.navbar-brand{
+    color:black;
+    padding-left:30%;
+    font-family: Microsoft sans-serif;
+    font-size:35px;
+}
+.form-group{
+    margin-bottom:-12px;
+}
+
+.glyphicon-off{
+    font-size:13px;
+}
+
+
+#select_language,#select_dialect{
+    width:20%;
+    margin-left:1%;
+}
+div#info {
+    margin-top: -34px;
+    margin-left: 20%;
+}
+div#div_language {
+    margin-top: 35px;
+}
+button#start_button {
+    margin-left: 5%;
+    padding: 10px;
+    border-radius: 5px;
+    background:#8fa1d2;
+}
+#results{
+    height:150px;
+    border:1px solid black;
+    border-radius:5px;
+    margin-top:40px;
+    margin-left:1%;
+    width:50%;
+}
+img#SpeechToTextImageIcon {
+    margin-top:-130px;
+    float: right;
+    width:35%;
+    margin-right:50px;
+}
+#start_img{
+    color:white;
+    font-size:40px;
+}
+#record{
+    color:white;
+    font-size:20px;
+    padding-left:10px;
+}
+</style>
+</head>
+
+<body>
+  <div ng-app="myApp" ng-controller="SpeechToTextController">
+<nav class="navbar navbar-light bg-faded">
+
+    <h1 class="navbar-brand m-b-0">Speech to Text Conversion
+    </h1>
+
+</nav>
+
+<div class="form-group">
+    <button id="start_button" ng-click="startButton(event)"><i class="fa fa-microphone" id="start_img"></i><span id="record">Record Button</span>
+    </button>
+
+
+</div>
+
+<div id="results">
+  <span id="final_span" class="final"></span>
+  <span id="interim_span" class="interim"></span>
+  <p>
+</div>
+</div>
+</body>
+</html>
+
+ <script src="js/SpeechtoText.js" type="text/javascript"></script>
