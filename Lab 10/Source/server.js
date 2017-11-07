@@ -1,33 +1,34 @@
-var express = require('express')
-var app = express();
+var http = require('http');
+var fs = require("fs");
+var url = require('url');
+// Create a server
+http.createServer( function (request, response) {
+    // Parse the request containing file name
+    var pathname = url.parse(request.url).pathname;
 
-var port = process.env.PORT || 8080;
+    // Print the name of the file for which request is made.
+    console.log("Request for " + pathname + " received.");
 
-app.use(express.static(__dirname + '/public'));
+    // Read the requested file content from file system
+    fs.readFile(pathname.substr(1), function (err, data) {
+        if (err) {
+            console.log(err);
+            // HTTP Status: 404 : NOT FOUND
+            // Content Type: text/plain
+            response.writeHead(404, {'Content-Type': 'text/html'});
+        }else {
+            //Page found
+            // HTTP Status: 200 : OK
+            // Content Type: text/plain
+            response.writeHead(200, {'Content-Type': 'text/html'});
 
-app.get('/', function(req, res) {
-	res.render('index');
-})
+            // Write the content of the file to response body
+            response.write(data.toString());
+        }
+        // Send the response body
+        response.end();
+    });
+}).listen(8081);
 
-app.listen(port, function() {
-	console.log('app running')
-})
-
-/*
-
-Open terminal and execute these commads starting
---->$ git init
---->$ git add .
---->$ heroku --version
---->$ heroku login
-Enter your Heroku credentials:
-    Email: rnd95@mail.umkc.edu
-Password: *********
-Logged in as rnd95@mail.umkc.edu
---->$ heroku local web
---->$ git add .
---->$ git commit -am "lab 10"
---->$ heroku create
---->$ git push https
-    To https://git.heroku.com/stark-woodland-84516.git
-*/
+// Console will print the message
+console.log('Client Server running at http://127.0.0.1:8081/');
