@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.aselabassignment.pranoop.lab10androidwear", appContext.getPackageName());
+        assertEquals("com.Lab10.SwetchaReddy.Watch", appContext.getPackageName());
     }
 }
